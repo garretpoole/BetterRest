@@ -12,16 +12,16 @@ struct ContentView: View {
     @State private var wakeUp = Date.now
     
     var body: some View {
-        //select future dates only
-        DatePicker("Please Enter a Date", selection: $wakeUp, in: Date.now...)
-            //hide label and center the picker
-            //.labelsHidden()
+        //actual order formats based on location
+        //Text(Date.now, format: .dateTime.day().month().year().hour().minute())
+        Text(Date.now.formatted(date: .long, time: .shortened))
     }
     
     func exampleDate(){
-        //creates a range of dates from now to exactly a day from now
-        let tomorrow = Date.now.addingTimeInterval(86400)
-        let range = Date.now...tomorrow
+        let components = Calendar.current.dateComponents([.hour, .minute], from: Date.now)
+        let hour = components.hour ?? 0
+        let minute = components.minute ?? 0
+        
     }
 }
 
